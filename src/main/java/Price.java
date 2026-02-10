@@ -9,4 +9,8 @@ public class Price {
     public Integer getLottoCount() {
         return value / PRICE_PER_LOTTO;
     }
+
+    public Integer getValue() {
+        return value;
+    }
 }
