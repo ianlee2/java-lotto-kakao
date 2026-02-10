@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -65,7 +66,7 @@ class InputTest {
                 "7"
         );
 
-        assertThrows(IllegalArgumentException.class, input::inputWinningNumbers);
+        assertThrows(NoSuchElementException.class, input::inputWinningNumbers);
     }
 
     @Test
@@ -76,6 +77,6 @@ class InputTest {
                 "bonus"
         );
 
-        assertThrows(IllegalArgumentException.class, input::inputWinningNumbers);
+        assertThrows(NoSuchElementException.class, input::inputWinningNumbers);
     }
 }

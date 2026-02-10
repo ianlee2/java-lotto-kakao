@@ -35,21 +35,42 @@ public class Input {
 
     // 당첨 번호 + 보너스 번호 입력
     public WinningLotto inputWinningNumbers() {
-        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
+        WinningLotto winningLotto = getWinningLotto();
 
-        List<Integer> numbers = parseNumbers(scanner.nextLine());
+        return getBonusNumber(winningLotto);
+    }
 
+    private WinningLotto getBonusNumber(WinningLotto winningLotto) {
         System.out.println("보너스 볼을 입력해 주세요.");
 
-        String bonusInput = scanner.nextLine();
-        int bonusNumber;
-        try {
-            bonusNumber = Integer.parseInt(bonusInput);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("보너스 번호는 숫자여야 합니다.");
-        }
+        while (true) {
+            String bonusInput = scanner.nextLine();
+            int bonusNumber;
 
-        return new WinningLotto(numbers, bonusNumber);
+            try {
+                bonusNumber = Integer.parseInt(bonusInput);
+                winningLotto.setBonusNumber(bonusNumber);
+                return winningLotto;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private WinningLotto getWinningLotto() {
+        WinningLotto winningLotto;
+
+        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
+        while (true) {
+            try {
+                List<Integer> numbers = parseNumbers(scanner.nextLine());
+                winningLotto = new WinningLotto(numbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningLotto;
     }
 
     /**
