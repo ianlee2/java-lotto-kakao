@@ -1,11 +1,19 @@
 import java.util.List;
 
 public class WinningLotto extends Lotto {
-    private final LottoNumber bonusNumber;
+    private LottoNumber bonusNumber;
 
-    public WinningLotto(List<Integer> nums, Integer bonusNumber) {
+    public WinningLotto(List<Integer> nums) {
         super(nums);
-        this.bonusNumber = new LottoNumber(bonusNumber);
+
+//        if (nums.contains(bonusNumber)) throw new IllegalArgumentException("당첨 번호와 보너스 번호는 달라야 합니다.");
+//        this.bonusNumber = new LottoNumber(bonusNumber);
+    }
+
+    public void setBonusNumber(Integer number) {
+        LottoNumber bonusNumber = new LottoNumber(number);
+        if (this.lottoNumbers.contains(bonusNumber)) throw new IllegalArgumentException("당첨 번호와 보너스 번호는 달라야 합니다.");
+        this.bonusNumber =  bonusNumber;
     }
 
     public LottoNumber getBonusNumber() {

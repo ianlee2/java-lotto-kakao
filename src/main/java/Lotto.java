@@ -7,7 +7,7 @@ public class Lotto {
 
     private static final int LOTTO_SIZE = 6;
 
-    private final List<LottoNumber> lottoNumbers;
+    protected final List<LottoNumber> lottoNumbers;
 
     public Lotto(List<Integer> nums) {
         validateSize(nums);
