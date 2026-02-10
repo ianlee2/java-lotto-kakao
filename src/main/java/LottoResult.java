@@ -38,6 +38,18 @@ public class LottoResult {
         // 1,2,3,4,5 등 다 테스트, 아무것도 해당안되는것도 테스트, matchCount = 3, bonusMatch = true 이면 5등 잘 나오는지 테스트
     }
 
+    public float getStatistics(Price price) {
+        long totalProfit = 0;
+
+        totalProfit += LottoWinningInfo.MATCH_6.getPrize() * firstPrize;
+        totalProfit += LottoWinningInfo.MATCH_5_BONUS.getPrize() * secondPrize;
+        totalProfit += LottoWinningInfo.MATCH_5.getPrize() * thirdPrize;
+        totalProfit += LottoWinningInfo.MATCH_4.getPrize() * fourthPrize;
+        totalProfit += LottoWinningInfo.MATCH_3.getPrize() * fifthPrize;
+
+        return (float) (totalProfit / price.getValue());
+    }
+
     public Integer getFirstPrize() {
         return firstPrize;
     }
