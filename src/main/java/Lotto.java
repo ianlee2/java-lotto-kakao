@@ -43,4 +43,12 @@ public class Lotto {
     public List<LottoNumber> getLottoNumbers() {
         return List.copyOf(lottoNumbers);
     }
+
+    @Override
+    public String toString() {
+        return lottoNumbers.stream()
+                .map(LottoNumber::getValue)
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ", "[", "]"));
+    }
 }
