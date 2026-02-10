@@ -100,4 +100,29 @@ class LottoResultTest {
         assertEquals(0, result.getFourthPrize());
         assertEquals(1, result.getFifthPrize());
     }
+
+    @Test
+    @DisplayName("여러 등수가 섞여 있을 때 전체 수익률을 계산한다")
+    void statistics_calculatesMultiplePrizes() {
+        LottoResult result = new LottoResult();
+        Price price = new Price(5_000); // 로또 5장
+
+        // 3등 1회
+        result.addResult(5, false);
+        // 4등 1회
+        result.addResult(4, false);
+        // 5등 1회
+        result.addResult(3, false);
+
+        long totalProfit =
+                LottoWinningInfo.MATCH_5.getPrize()
+                        + LottoWinningInfo.MATCH_4.getPrize()
+                        + LottoWinningInfo.MATCH_3.getPrize();
+
+        float expected = (float) totalProfit / price.getValue();
+
+        float statistics = result.getStatistics(price);
+
+        assertEquals(expected, statistics);
+    }
 }
