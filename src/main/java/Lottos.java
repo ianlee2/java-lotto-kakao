@@ -11,4 +11,21 @@ public class Lottos {
     public int size() {
         return lottos.size();
     }
+
+    public LottoResult match(WinningLotto winningLotto) {
+        LottoResult result = new LottoResult();
+
+        for (Lotto lotto : lottos) {
+            boolean bonusMatch = lotto.getLottoNumbers().contains(winningLotto.getBonusNumber());
+
+            int matchCount = 0;
+            for (LottoNumber lottoNumber : lotto.getLottoNumbers()) {
+                if (winningLotto.getLottoNumbers().contains(lottoNumber)) matchCount++;
+            }
+
+            result.addResult(matchCount, bonusMatch);
+        }
+
+        return result;
+    }
 }
