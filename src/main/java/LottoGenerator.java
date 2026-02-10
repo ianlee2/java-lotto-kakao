@@ -1,4 +1,4 @@
 
 public interface LottoGenerator {
-    public Lotto generateLotto();
+    Lotto generateLotto();
 }
