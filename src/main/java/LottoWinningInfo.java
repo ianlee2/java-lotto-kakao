@@ -48,7 +48,7 @@ public enum LottoWinningInfo {
                 .filter(info -> info.matchCount == matchCount)
                 .filter(info -> !info.bonusMatch) // 보너스 미적용 케이스
                 .findFirst()
-                .orElse(null);
+                .orElse(NONE);
     }
 
     @Override

@@ -60,11 +60,13 @@ class LottoWinningInfoTest {
         );
     }
 
+
+
     @Test
-    @DisplayName("1개, 2개 일치는 낙첨이므로 null을 반환한다")
-    void noPrize_returnsNull() {
-        assertNull(LottoWinningInfo.getLottoWinningInfo(1, false));
-        assertNull(LottoWinningInfo.getLottoWinningInfo(2, false));
-        assertNull(LottoWinningInfo.getLottoWinningInfo(0, false));
+    @DisplayName("0개, 1개, 2개 일치는 낙첨이므로 NONE을 반환한다")
+    void noPrize_returnsNone() {
+        assertEquals(LottoWinningInfo.NONE, LottoWinningInfo.getLottoWinningInfo(0, false));
+        assertEquals(LottoWinningInfo.NONE, LottoWinningInfo.getLottoWinningInfo(1, false));
+        assertEquals(LottoWinningInfo.NONE, LottoWinningInfo.getLottoWinningInfo(2, false));
     }
 }
