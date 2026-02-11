@@ -1,3 +1,9 @@
+package lotto.controller;
+
+import lotto.domain.*;
+import lotto.view.Input;
+import lotto.view.Output;
+
 public class Main {
     public static void main(String[] args) {
 

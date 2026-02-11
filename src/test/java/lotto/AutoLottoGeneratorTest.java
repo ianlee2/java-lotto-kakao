@@ -1,8 +1,9 @@
-import org.junit.jupiter.api.Test;
+package lotto;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import lotto.domain.AutoLottoGenerator;
+import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,3 +1,5 @@
+package lotto.domain.enums;
+
 import java.util.Arrays;
 
 public enum LottoWinningInfo {
@@ -53,7 +55,7 @@ public enum LottoWinningInfo {
 
     @Override
     public String toString() {
-        return "LottoWinningInfo{" +
+        return "lotto.domain.enums.LottoWinningInfo{" +
                 "matchCount=" + matchCount +
                 ", bonusMatch=" + bonusMatch +
                 ", prize=" + prize +

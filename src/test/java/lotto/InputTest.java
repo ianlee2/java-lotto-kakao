@@ -1,3 +1,8 @@
+package lotto;
+
+import lotto.domain.Price;
+import lotto.domain.WinningLotto;
+import lotto.view.Input;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,3 +1,8 @@
+package lotto.view;
+
+import lotto.domain.*;
+import lotto.domain.enums.LottoWinningInfo;
+
 import java.util.stream.Collectors;
 
 public class Output {

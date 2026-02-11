@@ -1,4 +1,4 @@
-import java.util.List;
+package lotto.domain;
 
 public class WinningLotto {
     private final Lotto winningLottoNumbers;

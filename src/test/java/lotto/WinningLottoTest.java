@@ -1,3 +1,8 @@
+package lotto;
+
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +24,7 @@ class WinningLottoTest {
 
 
     @Test
-    @DisplayName("당첨 번호에 중복이 있으면 WinningLotto 생성에 실패한다")
+    @DisplayName("당첨 번호에 중복이 있으면 lotto.domain.WinningLotto 생성에 실패한다")
     void failsWhenWinningNumbersDuplicated() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
         int bonusNumber = 9;
@@ -27,7 +32,7 @@ class WinningLottoTest {
     }
 
     @Test
-    @DisplayName("보너스 번호가 당첨 번호와 같으면 WinningLotto 생성에 실패한다")
+    @DisplayName("보너스 번호가 당첨 번호와 같으면 lotto.domain.WinningLotto 생성에 실패한다")
     void failsWhenBonusNumberDuplicated() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 6;

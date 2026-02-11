@@ -1,3 +1,5 @@
+package lotto.domain;
+
 import java.util.List;
 
 // 동일 회차 기준 구매한 로또 번호들

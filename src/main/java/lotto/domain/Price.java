@@ -1,3 +1,5 @@
+package lotto.domain;
+
 public class Price {
     private final Integer value;
     private static final int PRICE_PER_LOTTO = 1000;

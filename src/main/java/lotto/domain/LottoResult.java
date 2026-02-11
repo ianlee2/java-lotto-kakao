@@ -1,3 +1,7 @@
+package lotto.domain;
+
+import lotto.domain.enums.LottoWinningInfo;
+
 import java.util.HashMap;
 import java.util.Map;
 
