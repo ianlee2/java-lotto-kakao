@@ -2,6 +2,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PriceTest {
     @Test
@@ -16,9 +17,9 @@ public class PriceTest {
     @Test
     @DisplayName("1000원 이하면 0개 반환")
     void returns_zero_lotto_count () {
-        Price price = new Price("500");
 
-        assertThat(price.getLottoCount()).isEqualTo(0);
+
+        assertThrows(IllegalArgumentException.class, () -> new Price("500"));
 
     }
 
