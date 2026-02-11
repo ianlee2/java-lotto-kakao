@@ -21,31 +21,7 @@ public class Output {
         System.out.println();
     }
 
-    // 로또
-    public static void printLottoStatistics(LottoResult result, Price price) {
-        System.out.println("당첨 통계");
-        System.out.println("---------");
-
-        // 3개 / 4개 / 5개 / 5+보너스 / 6개 순으로 출력
-        System.out.println(formatLine(LottoWinningInfo.MATCH_3.getDescription(), LottoWinningInfo.MATCH_3.getPrize(), result.getPrizeCount(LottoWinningInfo.MATCH_3)));
-        System.out.println(formatLine(LottoWinningInfo.MATCH_4.getDescription(), LottoWinningInfo.MATCH_4.getPrize(), result.getPrizeCount(LottoWinningInfo.MATCH_4)));
-        System.out.println(formatLine(LottoWinningInfo.MATCH_5.getDescription(), LottoWinningInfo.MATCH_5.getPrize(), result.getPrizeCount(LottoWinningInfo.MATCH_5)));
-        System.out.println(formatLineWithBonus(LottoWinningInfo.MATCH_5_BONUS.getDescription(), LottoWinningInfo.MATCH_5_BONUS.getPrize(), result.getPrizeCount(LottoWinningInfo.MATCH_5_BONUS)));
-        System.out.println(formatLine(LottoWinningInfo.MATCH_6.getDescription(), LottoWinningInfo.MATCH_6.getPrize(), result.getPrizeCount(LottoWinningInfo.MATCH_6)));
-
-        float roi = result.getStatistics(price);
-
-        String meaning = roi < 1.0f ? "손해" : "이득";
-        System.out.printf("총 수익률은 %.2f입니다.(기준이 1이기 때문에 결과적으로 %s라는 의미임)%n", roi, meaning);
+    public static void printLottoStatistics(String statisticsText) {
+        System.out.println(statisticsText);
     }
-
-    private static String formatLine(String title, long prize, int count) {
-        return String.format("%s (%d원)- %d개", title, prize, count);
-    }
-
-    private static String formatLineWithBonus(String title, long prize, int count) {
-        return String.format("%s(%d원) - %d개", title, prize, count);
-    }
-
-
 }
