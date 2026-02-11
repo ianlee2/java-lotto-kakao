@@ -20,16 +20,14 @@ public class Input {
     // 구입 금액 입력
     public Price inputPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-
-        String input = scanner.nextLine();
-
-        try {
-            int value = Integer.parseInt(input);
-            // 음수 잡아내기
-            if (value < 0) throw new NumberFormatException();
-            return new Price(value);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("구입 금액은 숫자여야 합니다.");
+        while (true) {
+            try {
+                String input = scanner.nextLine();
+                return new Price(input); // 여기서 예외 발생 가능
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                // 다시 반복 → 재입력
+            }
         }
     }
 
