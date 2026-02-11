@@ -32,43 +32,47 @@ public class Input {
     }
 
     // 당첨 번호 + 보너스 번호 입력
-    public WinningLotto inputWinningNumbers() {
-        WinningLotto winningLotto = getWinningLotto();
+    public WinningLotto inputWinningNumbersAndBonusNumber() {
+        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
+        Lotto winningLotto = getWinningLotto();
 
-        return getBonusNumber(winningLotto);
+        System.out.println("보너스 볼을 입력해 주세요.");
+        while (true) {
+            try {
+                LottoNumber bonusNumber = getBonusNumber();
+
+                return new WinningLotto(winningLotto, bonusNumber);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private WinningLotto getBonusNumber(WinningLotto winningLotto) {
-        System.out.println("보너스 볼을 입력해 주세요.");
 
+    private LottoNumber getBonusNumber() {
         while (true) {
             String bonusInput = scanner.nextLine();
             int bonusNumber;
 
             try {
                 bonusNumber = Integer.parseInt(bonusInput);
-                winningLotto.setBonusNumber(bonusNumber);
-                return winningLotto;
+                return new LottoNumber(bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private WinningLotto getWinningLotto() {
-        WinningLotto winningLotto;
-
-        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
+    private Lotto getWinningLotto() {
         while (true) {
             try {
-                List<Integer> numbers = parseNumbers(scanner.nextLine());
-                winningLotto = new WinningLotto(numbers);
-                break;
+                List<Integer> nums = (parseNumbers(scanner.nextLine()));
+                return new Lotto(nums);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return winningLotto;
     }
 
     /**

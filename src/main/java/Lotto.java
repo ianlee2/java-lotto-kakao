@@ -7,7 +7,7 @@ public class Lotto {
 
     private static final int LOTTO_SIZE = 6;
 
-    protected final List<LottoNumber> lottoNumbers;
+    private final List<LottoNumber> lottoNumbers;
 
     public Lotto(List<Integer> nums) {
         validateSize(nums);
@@ -51,9 +51,13 @@ public class Lotto {
     public Integer matchNumbers(WinningLotto winningLotto) {
         int matchCount = 0;
         for (LottoNumber lottoNumber : lottoNumbers) {
-            if (winningLotto.getLottoNumbers().contains(lottoNumber)) matchCount++;
+            if (winningLotto.getWinningLottoNumbers().contains(lottoNumber)) matchCount++;
         }
 
         return matchCount;
+    }
+
+    public boolean contains(LottoNumber number) {
+        return lottoNumbers.contains(number);
     }
 }

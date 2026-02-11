@@ -41,9 +41,7 @@ class LottoTest {
     @DisplayName("보너스 번호가 포함되어 있으면 true를 반환한다")
     void matchBonus_returnsTrue_whenBonusIncluded() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-        WinningLotto winning = new WinningLotto(List.of(7, 8, 9, 10, 11, 12));
-        winning.setBonusNumber(6);
+        WinningLotto winning = new WinningLotto(new Lotto(List.of(7, 8, 9, 10, 11, 12)), new LottoNumber(6));
 
         assertTrue(lotto.matchBonus(winning));
     }
@@ -52,9 +50,7 @@ class LottoTest {
     @DisplayName("보너스 번호가 포함되어 있지 않으면 false를 반환한다")
     void matchBonus_returnsFalse_whenBonusNotIncluded() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-        WinningLotto winning = new WinningLotto(List.of(7, 8, 9, 10, 11, 12));
-        winning.setBonusNumber(13);
+        WinningLotto winning = new WinningLotto(new Lotto(List.of(7, 8, 9, 10, 11, 12)), new LottoNumber(13));
 
         assertFalse(lotto.matchBonus(winning));
     }
@@ -63,9 +59,7 @@ class LottoTest {
     @DisplayName("일치하는 번호 개수를 정확히 반환한다")
     void matchNumbers_returnsCorrectCount() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-        WinningLotto winning = new WinningLotto(List.of(1, 2, 7, 8, 9, 10));
-        winning.setBonusNumber(11);
+        WinningLotto winning = new WinningLotto(new Lotto(List.of(1, 2, 7, 8, 9, 10)), new LottoNumber(11));
 
         assertEquals(2, lotto.matchNumbers(winning));
     }
@@ -74,9 +68,7 @@ class LottoTest {
     @DisplayName("일치하는 번호가 없으면 0을 반환한다")
     void matchNumbers_returnsZero_whenNoMatch() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-        WinningLotto winning = new WinningLotto(List.of(7, 8, 9, 10, 11, 12));
-        winning.setBonusNumber(13);
+        WinningLotto winning = new WinningLotto(new Lotto(List.of(7, 8, 9, 10, 11, 12)), new LottoNumber(13));
 
         assertEquals(0, lotto.matchNumbers(winning));
     }
@@ -85,9 +77,7 @@ class LottoTest {
     @DisplayName("6개 모두 일치하면 6을 반환한다")
     void matchNumbers_returnsSix_whenAllMatch() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-        WinningLotto winning = new WinningLotto(List.of(1, 2, 3, 4, 5, 6));
-        winning.setBonusNumber(7);
+        WinningLotto winning = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new LottoNumber(7));
 
         assertEquals(6, lotto.matchNumbers(winning));
     }

@@ -15,7 +15,7 @@ public class Main {
         Output.printLottos(lottos);
 
         // 당첨 번호 & 보너스 번호 입력
-        WinningLotto winningLotto = input.inputWinningNumbers();
+        WinningLotto winningLotto = input.inputWinningNumbersAndBonusNumber();
 
         // 구매 로또와 당첨 번호 match -> LottoResult에 기록됨
         LottoResult result = lottos.match(winningLotto);

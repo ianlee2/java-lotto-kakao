@@ -12,8 +12,7 @@ class WinningLottoTest {
     void createsWinningLottoCorrectly() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 9;
-        WinningLotto winningLotto = new WinningLotto(numbers);
-        winningLotto.setBonusNumber(bonusNumber);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(numbers), new LottoNumber(bonusNumber));
 
         assertDoesNotThrow(() -> winningLotto);
     }
@@ -23,7 +22,8 @@ class WinningLottoTest {
     @DisplayName("당첨 번호에 중복이 있으면 WinningLotto 생성에 실패한다")
     void failsWhenWinningNumbersDuplicated() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
-        assertThrows(IllegalArgumentException.class, () -> new WinningLotto(numbers));
+        int bonusNumber = 9;
+        assertThrows(IllegalArgumentException.class, () -> new WinningLotto(new Lotto(numbers), new LottoNumber(bonusNumber)));
     }
 
     @Test
@@ -31,7 +31,6 @@ class WinningLottoTest {
     void failsWhenBonusNumberDuplicated() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 6;
-        WinningLotto winningLotto = new WinningLotto(numbers);
-        assertThrows(IllegalArgumentException.class, () -> winningLotto.setBonusNumber(bonusNumber));
+        assertThrows(IllegalArgumentException.class, () -> new WinningLotto(new Lotto(numbers), new LottoNumber(bonusNumber)));
     }
 }

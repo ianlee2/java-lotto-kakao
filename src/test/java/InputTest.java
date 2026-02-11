@@ -51,10 +51,10 @@ class InputTest {
                 "7"
         );
 
-        WinningLotto winningLotto = input.inputWinningNumbers();
+        WinningLotto winningLotto = input.inputWinningNumbersAndBonusNumber();
 
         // Lotto의 숫자 확인 (Lotto가 getLottoNumbers() 제공한다고 가정)
-        assertEquals(6, winningLotto.size());
+        assertEquals(6, winningLotto.getWinningLottoNumbers().size());
         assertEquals(7, winningLotto.getBonusNumber().getValue());
     }
 
@@ -66,7 +66,7 @@ class InputTest {
                 "7"
         );
 
-        assertThrows(NoSuchElementException.class, input::inputWinningNumbers);
+        assertThrows(NoSuchElementException.class, input::inputWinningNumbersAndBonusNumber);
     }
 
     @Test
@@ -77,6 +77,6 @@ class InputTest {
                 "bonus"
         );
 
-        assertThrows(NoSuchElementException.class, input::inputWinningNumbers);
+        assertThrows(NoSuchElementException.class, input::inputWinningNumbersAndBonusNumber);
     }
 }
