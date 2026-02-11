@@ -32,7 +32,7 @@ class InputTest {
     void inputPrice_throws_whenNegative() {
         Input input = inputWithLines("-1");
 
-        assertThrows(IllegalArgumentException.class, input::inputPrice);
+        assertThrows(NoSuchElementException.class, input::inputPrice);
     }
 
     @Test
@@ -40,7 +40,7 @@ class InputTest {
     void inputPrice_throws_whenNotNumber() {
         Input input = inputWithLines("abc");
 
-        assertThrows(IllegalArgumentException.class, input::inputPrice);
+        assertThrows(NoSuchElementException.class, input::inputPrice);
     }
 
     @Test
