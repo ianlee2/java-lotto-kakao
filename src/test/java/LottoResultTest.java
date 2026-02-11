@@ -12,11 +12,11 @@ class LottoResultTest {
 
         result.addResult(3, false);
 
-        assertEquals(0, result.getFirstPrize());
-        assertEquals(0, result.getSecondPrize());
-        assertEquals(0, result.getThirdPrize());
-        assertEquals(0, result.getFourthPrize());
-        assertEquals(1, result.getFifthPrize());
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_6));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_5_BONUS));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_5));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_4));
+        assertEquals(1, result.getPrizeCount(LottoWinningInfo.MATCH_3));
     }
 
     @Test
@@ -26,11 +26,11 @@ class LottoResultTest {
 
         result.addResult(4, false);
 
-        assertEquals(0, result.getFirstPrize());
-        assertEquals(0, result.getSecondPrize());
-        assertEquals(0, result.getThirdPrize());
-        assertEquals(1, result.getFourthPrize());
-        assertEquals(0, result.getFifthPrize());
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_6));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_5_BONUS));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_5));
+        assertEquals(1, result.getPrizeCount(LottoWinningInfo.MATCH_4));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_3));
     }
 
     @Test
@@ -40,11 +40,11 @@ class LottoResultTest {
 
         result.addResult(5, false);
 
-        assertEquals(0, result.getFirstPrize());
-        assertEquals(0, result.getSecondPrize());
-        assertEquals(1, result.getThirdPrize());
-        assertEquals(0, result.getFourthPrize());
-        assertEquals(0, result.getFifthPrize());
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_6));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_5_BONUS));
+        assertEquals(1, result.getPrizeCount(LottoWinningInfo.MATCH_5));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_4));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_3));
     }
 
     @Test
@@ -54,11 +54,11 @@ class LottoResultTest {
 
         result.addResult(5, true);
 
-        assertEquals(0, result.getFirstPrize());
-        assertEquals(1, result.getSecondPrize());
-        assertEquals(0, result.getThirdPrize());
-        assertEquals(0, result.getFourthPrize());
-        assertEquals(0, result.getFifthPrize());
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_6));
+        assertEquals(1, result.getPrizeCount(LottoWinningInfo.MATCH_5_BONUS));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_5));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_4));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_3));
     }
 
     @Test
@@ -68,11 +68,11 @@ class LottoResultTest {
 
         result.addResult(6, false);
 
-        assertEquals(1, result.getFirstPrize());
-        assertEquals(0, result.getSecondPrize());
-        assertEquals(0, result.getThirdPrize());
-        assertEquals(0, result.getFourthPrize());
-        assertEquals(0, result.getFifthPrize());
+        assertEquals(1, result.getPrizeCount(LottoWinningInfo.MATCH_6));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_5_BONUS));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_5));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_4));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_3));
     }
 
     @Test
@@ -82,11 +82,11 @@ class LottoResultTest {
 
 //        assertThrows(IllegalArgumentException.class, () -> result.addResult(1, false));
         result.addResult(1, false);
-        assertEquals(0, result.getFirstPrize());
-        assertEquals(0, result.getSecondPrize());
-        assertEquals(0, result.getThirdPrize());
-        assertEquals(0, result.getFourthPrize());
-        assertEquals(0, result.getFifthPrize());
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_6));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_5_BONUS));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_5));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_4));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_3));
     }
 
     @Test
@@ -94,18 +94,18 @@ class LottoResultTest {
     void addResult_match3Bonus_throws() {
         LottoResult result = new LottoResult();
         result.addResult(3, true);
-        assertEquals(0, result.getFirstPrize());
-        assertEquals(0, result.getSecondPrize());
-        assertEquals(0, result.getThirdPrize());
-        assertEquals(0, result.getFourthPrize());
-        assertEquals(1, result.getFifthPrize());
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_6));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_5_BONUS));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_5));
+        assertEquals(0, result.getPrizeCount(LottoWinningInfo.MATCH_4));
+        assertEquals(1, result.getPrizeCount(LottoWinningInfo.MATCH_3));
     }
 
     @Test
     @DisplayName("여러 등수가 섞여 있을 때 전체 수익률을 계산한다")
     void statistics_calculatesMultiplePrizes() {
         LottoResult result = new LottoResult();
-        Price price = new Price(5_000); // 로또 5장
+        Price price = new Price("5000"); // 로또 5장
 
         // 3등 1회
         result.addResult(5, false);
