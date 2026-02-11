@@ -43,4 +43,17 @@ public class Lotto {
     public List<LottoNumber> getLottoNumbers() {
         return List.copyOf(lottoNumbers);
     }
+
+    public boolean matchBonus(WinningLotto winningLotto) {
+        return lottoNumbers.contains(winningLotto.getBonusNumber());
+    }
+
+    public Integer matchNumbers(WinningLotto winningLotto) {
+        int matchCount = 0;
+        for (LottoNumber lottoNumber : lottoNumbers) {
+            if (winningLotto.getLottoNumbers().contains(lottoNumber)) matchCount++;
+        }
+
+        return matchCount;
+    }
 }

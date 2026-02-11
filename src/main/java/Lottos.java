@@ -12,16 +12,13 @@ public class Lottos {
         return lottos.size();
     }
 
+    // 당첨 로또와 비교하여 전체 결과 집계
     public LottoResult match(WinningLotto winningLotto) {
         LottoResult result = new LottoResult();
 
         for (Lotto lotto : lottos) {
-            boolean bonusMatch = lotto.getLottoNumbers().contains(winningLotto.getBonusNumber());
-
-            int matchCount = 0;
-            for (LottoNumber lottoNumber : lotto.getLottoNumbers()) {
-                if (winningLotto.getLottoNumbers().contains(lottoNumber)) matchCount++;
-            }
+            int matchCount = lotto.matchNumbers(winningLotto);
+            boolean bonusMatch = lotto.matchBonus(winningLotto);
 
             result.addResult(matchCount, bonusMatch);
         }
