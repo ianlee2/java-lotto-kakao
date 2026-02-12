@@ -84,4 +84,33 @@ class InputTest {
 
         assertThrows(NoSuchElementException.class, input::inputWinningNumbersAndBonusNumber);
     }
+
+    // inputManualCount() 단위 테스트
+    @Test
+    @DisplayName("수동 구매 수가 0~maxCount면 해당 값을 반환한다 - 성공")
+    void inputManualCount_returnsCount_whenValid() {
+        Input input = inputWithLines("3");
+        assertEquals(3, input.inputManualCount(13));
+    }
+
+    @Test
+    @DisplayName("수동 구매 수가 숫자가 아니면 재입력 후 정상 입력을 반환한다")
+    void inputManualCount_retries_whenNotNumber() {
+        Input input = inputWithLines("asd", "3");
+        assertEquals(3, input.inputManualCount(13));
+    }
+
+    @Test
+    @DisplayName("수동 구매 수가 음수면 재입력 후 정상 입력을 반환한다")
+    void inputManualCount_retries_whenNegative() {
+        Input input = inputWithLines("-1", "3");
+        assertEquals(3, input.inputManualCount(13));
+    }
+
+    @Test
+    @DisplayName("수동 구매 수가 maxCount 초과면 재입력 후 정상 입력을 반환한다")
+    void inputManualCount_retries_whenOverMaxCount() {
+        Input input = inputWithLines("14", "13");
+        assertEquals(13, input.inputManualCount(13));
+    }
 }

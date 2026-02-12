@@ -14,10 +14,13 @@ public class Main {
         // 구입 금액 입력
         Price price = input.inputPrice();
 
+        // 수동 로또 구매 갯수 입력
+        int manualCount = input.inputManualCount(price.getLottoCount());
+
         // 구입 금액을 기준으로 로또 발급
         LottoVendingMachine machine = new LottoVendingMachine();
         Lottos lottos = machine.genenrateLottos(price.getLottoCount());
-        
+
         // 구매한 로또 출력
         Output.printLottos(lottos);
 

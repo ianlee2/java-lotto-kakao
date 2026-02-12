@@ -38,6 +38,33 @@ public class Input {
         }
     }
 
+    // 수동 로또 구매 수 입력
+    public int inputManualCount(int maxCount) {
+        System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
+        while (true) {
+            try {
+                String input = scanner.nextLine();
+                return validateManualCount(input, maxCount);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+
+    }
+
+    private int validateManualCount(String input, int maxCount) {
+
+        if (!input.matches("^-?\\d+$")) { throw new IllegalArgumentException("숫자만 입력해 주세요."); }
+
+        int count = Integer.parseInt(input);
+        if (count < 0) { throw new IllegalArgumentException("0 이상을 입력해 주세요."); }
+        if (count > maxCount) { throw new IllegalArgumentException(String.format("구입 금액으로는 최대 %d개까지만 수동 구매할 수 있어요.", maxCount)); }
+
+        return count;
+    }
+
+
     // 당첨 번호 + 보너스 번호 입력
     public WinningLotto inputWinningNumbersAndBonusNumber() {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
