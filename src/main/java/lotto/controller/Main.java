@@ -5,6 +5,8 @@ import lotto.domain.enums.LottoWinningInfo;
 import lotto.view.Input;
 import lotto.view.Output;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -14,27 +16,39 @@ public class Main {
         // 구입 금액 입력
         Price price = input.inputPrice();
 
-        // 수동 로또 구매 갯수 입력
+        // 수동 로또 구매 갯수 입력 + 자동 로또 갯수 계산
         int manualCount = input.inputManualCount(price.getLottoCount());
+        int autoCount = price.getLottoCount() - manualCount;
 
-        // 구입 금액을 기준으로 로또 발급
-        LottoVendingMachine machine = new LottoVendingMachine();
-        Lottos lottos = machine.genenrateLottos(price.getLottoCount());
-
-        // 구매한 로또 출력
-        Output.printLottos(lottos);
+        // 수동 & 자동 로또 갯수 바탕으로 실제 로또 발행 및 출력
+        Lottos mergedLottos = issueLottos(input, manualCount, autoCount);
 
         // 당첨 번호 & 보너스 번호 입력
         WinningLotto winningLotto = input.inputWinningNumbersAndBonusNumber();
 
         // 구매 로또와 당첨 번호 match -> LottoResult에 기록됨
-        LottoResult result = lottos.match(winningLotto);
+        LottoResult result = mergedLottos.match(winningLotto);
 
         // 당첨 통계 및 수익률 출력 - Controller 단에서 Domain을 의존하여 처리한 결과만 View로 던져줌.
         String statisticsText = createStatisticsText(result, price);
 
         // View에는 완성된 문자열만 전달
         Output.printLottoStatistics(statisticsText);
+    }
+
+    private static Lottos issueLottos(Input input,  int manualCount, int autoCount) {
+        LottoVendingMachine machine = new LottoVendingMachine();
+
+        Output.printRequestManulLottos();
+
+        List<Lotto> manualList = input.inputManualLotto(manualCount);
+        Lottos manualLottos = machine.generateManualLottos(manualList);
+        Lottos autoLottos = machine.genenrateAutoLottos(autoCount);
+        Lottos merged = manualLottos.merge(autoLottos);
+
+        Output.printLottos(manualCount, autoCount, merged);
+
+        return merged;
     }
 
 
