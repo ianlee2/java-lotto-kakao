@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Input {
 
@@ -96,6 +97,13 @@ public class Input {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    // 구매하고자 하는 수동 로또 갯수만큼 Lotto 생성
+    public List<Lotto> inputManualLotto(int manualLottoCount) {
+        return IntStream.range(0, manualLottoCount)
+                .mapToObj(i -> generateLotto())
+                .toList();
     }
 
     private Lotto generateLotto() {
