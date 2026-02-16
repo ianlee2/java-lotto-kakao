@@ -68,7 +68,7 @@ public class Input {
     // 당첨 번호 + 보너스 번호 입력
     public WinningLotto inputWinningNumbersAndBonusNumber() {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        Lotto winningLotto = getWinningLotto();
+        Lotto winningLotto = generateLotto();
 
         System.out.println("보너스 볼을 입력해 주세요.");
         while (true) {
@@ -98,7 +98,7 @@ public class Input {
         }
     }
 
-    private Lotto getWinningLotto() {
+    private Lotto generateLotto() {
         while (true) {
             try {
                 List<Integer> nums = (parseNumbers(scanner.nextLine()));

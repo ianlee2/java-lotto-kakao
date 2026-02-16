@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LottoVendingMachine {
 
-    public Lottos genenrateLottos(Integer lottoCount) {
+    public Lottos genenrateAutoLottos(Integer lottoCount) {
         LottoGenerator  lottoGenerator  = new AutoLottoGenerator();
         List<Lotto> generatedLottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {

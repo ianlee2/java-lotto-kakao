@@ -14,7 +14,7 @@ public class LottoVendingMachineTest {
     void creates_lottos() {
         Price price = new Price("12000");
         LottoVendingMachine machine = new LottoVendingMachine();
-        Lottos lottos = machine.genenrateLottos(price.getLottoCount());
+        Lottos lottos = machine.genenrateAutoLottos(price.getLottoCount());
         assertThat(lottos.size()).isEqualTo(price.getLottoCount());
     }
 }
