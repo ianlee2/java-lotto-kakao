@@ -14,4 +14,8 @@ public class LottoVendingMachine {
         return new Lottos(generatedLottos);
     }
 
+    public Lottos generateManualLottos(List<Lotto> lottoList) {
+        return new Lottos(lottoList);
+    }
+
 }
